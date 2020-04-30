@@ -1,8 +1,11 @@
 name: stack
 channels:
+  - stackvana
   - conda-forge
   - default
 dependencies:
   - python
+  - pip
   - pytest
   - flake8
+  - stackvana
