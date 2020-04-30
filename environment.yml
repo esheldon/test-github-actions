@@ -1,0 +1,8 @@
+name: stack
+channels:
+  - conda-forge
+  - default
+dependencies:
+  - python
+  - pytest
+  - flake8
