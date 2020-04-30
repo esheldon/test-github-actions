@@ -13,3 +13,4 @@ dependencies:
   - esutil
   - fitsio
   - numba
+  - ngmix
