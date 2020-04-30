@@ -9,3 +9,6 @@ dependencies:
   - pytest
   - flake8
   - stackvana
+  - galsim
+  - esutil
+  - fitsio

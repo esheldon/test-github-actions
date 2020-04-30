@@ -26,6 +26,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
           environment-file: environment.yml
           activate-environment: stack
+      - name: Install special dependencies with pip
+        run: |
+          pip install --no-deps git+https://github.com:LSSTDESC/descwl-shear-sims.git
       - name: Lint with flake8
         shell: bash -l {0}
         run: |
