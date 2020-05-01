@@ -17,7 +17,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+
+      - uses: actions/cache@v1
+        id: cache
+        with:
+          path: /github/home/miniconda3
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+
       - name: Setup Miniconda
+        if: steps.cache.outputs.cache-hit != 'true'
         uses: goanpeca/setup-miniconda@v1
         with:
           auto-update-conda: true
