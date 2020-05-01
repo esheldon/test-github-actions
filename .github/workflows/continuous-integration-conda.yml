@@ -22,7 +22,7 @@ jobs:
       - uses: actions/cache@v1
         id: cache
         with:
-          path: /github/home/miniconda3
+          path: /github/home/esheldon/miniconda3
           key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
 
       - name: Setup Miniconda
