@@ -6,35 +6,40 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+    HOME: /root
 
 jobs:
-  build:
+    build:
 
-    runs-on: 'ubuntu-latest'
+        runs-on: 'ubuntu-latest'
 
-    container: beckermr/stackvana
+        container: beckermr/stackvana
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+        steps:
+            - name: Setup
+                cd $HOME
+                . /usr/local/share/stackvana-activate.sh
+            - name: Checkout code
+              uses: actions/checkout@v2
 
-      - name: Install special dependencies with pip
-        shell: bash -l {0}
-        run: |
-          conda install -q -y ngmix
-          pip install --no-deps git+https://github.com/LSSTDESC/descwl-shear-sims.git
-          pip install --no-deps git+https://github.com/LSSTDESC/descwl_coadd.git
-          pip install --no-deps git+https://github.com/esheldon/metadetect.git
+            - name: Install special dependencies with conda and pip
+              shell: bash -l {0}
+              run: |
+                  conda install -q -y ngmix
+                  pip install --no-deps git+https://github.com/LSSTDESC/descwl-shear-sims.git
+                  pip install --no-deps git+https://github.com/LSSTDESC/descwl_coadd.git
+                  pip install --no-deps git+https://github.com/esheldon/metadetect.git
 
-      - name: Lint with flake8
-        shell: bash -l {0}
-        run: |
-          # stop the build if there are Python syntax errors or undefined names
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          flake8 . --count --exit-zero --max-line-length=79 --statistics
+            - name: Lint with flake8
+              shell: bash -l {0}
+              run: |
+                  # stop the build if there are Python syntax errors or undefined names
+                  flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+                  # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+                  flake8 . --count --exit-zero --max-line-length=79 --statistics
 
-      - name: Run pytest
-        shell: bash -l {0}
-        run: |
-          pytest -vv
+            - name: Run pytest
+              shell: bash -l {0}
+              run: |
+                  pytest -vv
