@@ -17,14 +17,11 @@ jobs:
         container: beckermr/stackvana
 
         steps:
-            - name: Setup
-              shell: bash -l {0}
-              run: |
-                  cd $HOME
-                  . /usr/local/share/stackvana-activate.sh
-
-            - name: Checkout code
-              uses: actions/checkout@v2
+            # - name: Setup
+            #   shell: bash -l {0}
+            #   run: |
+            #       cd $HOME
+            #       . /usr/local/share/stackvana-activate.sh
 
             - name: Install special dependencies with conda and pip
               shell: bash -l {0}
@@ -34,6 +31,9 @@ jobs:
                   pip install --no-deps git+https://github.com/LSSTDESC/descwl-shear-sims.git
                   pip install --no-deps git+https://github.com/LSSTDESC/descwl_coadd.git
                   pip install --no-deps git+https://github.com/esheldon/metadetect.git
+
+            - name: Checkout code
+              uses: actions/checkout@v2
 
             - name: Lint with flake8
               shell: bash -l {0}
