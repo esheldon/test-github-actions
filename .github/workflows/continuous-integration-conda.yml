@@ -18,8 +18,10 @@ jobs:
 
         steps:
             - name: Setup
-                cd $HOME
-                . /usr/local/share/stackvana-activate.sh
+              run: |
+                  cd $HOME
+                  . /usr/local/share/stackvana-activate.sh
+
             - name: Checkout code
               uses: actions/checkout@v2
 
