@@ -15,16 +15,9 @@ jobs:
 
         steps:
 
-            # - name: Setup
-            #   shell: bash -l {0}
-            #   run: |
-            #       echo '. /usr/local/share/stackvana-activate.sh' >> $HOME/.bashrc
-
             - name: Install special dependencies with conda and pip
               shell: bash -l {0}
               run: |
-                  echo "user: ${USER}"
-                  echo "home: ${HOME}"
                   . /usr/local/share/stackvana-activate.sh
                   conda install -q -y ngmix
                   pip install --no-deps git+https://github.com/LSSTDESC/descwl-shear-sims.git
