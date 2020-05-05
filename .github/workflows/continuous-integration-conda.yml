@@ -18,6 +18,7 @@ jobs:
 
         steps:
             - name: Setup
+              shell: bash -l {0}
               run: |
                   cd $HOME
                   . /usr/local/share/stackvana-activate.sh
